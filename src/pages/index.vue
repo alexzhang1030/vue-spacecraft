@@ -5,6 +5,6 @@ import StartModal from '~/components/StartModal.vue';
 <template>
   <start-modal></start-modal>
   <div>
-    hello
+    Vue Spacecraft
   </div>
 </template>

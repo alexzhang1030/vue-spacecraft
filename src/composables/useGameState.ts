@@ -13,4 +13,8 @@ export function useGameState() {
     if (code === 'Escape')
       store.state.value = GameState.END
   })
+  useEventListener(document, 'mousedown', () => {
+    if (store.state.value !== GameState.START)
+      store.state.value = GameState.START
+  })
 }

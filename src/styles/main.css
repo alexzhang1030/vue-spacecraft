@@ -1,10 +1,19 @@
+html {
+  background: #1e1a20;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
 html,
 body,
 #app {
+  width: 100%;
   height: 100%;
   margin: 0;
-  padding: 0;
+  overflow: hidden;
+  user-select: none;
+  color: #fff;
 }
+
 
 html.dark {
   background: #a3a3a3;

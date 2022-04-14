@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import StartModal from '~/components/StartModal.vue'
-import Player from '~/components/Player/index.vue'
+import GameContainer from '~/components/Game/index.vue'
 </script>
 
 <template>
-  <start-modal />
   <div>Vue Spacecraft</div>
-  <player />
+  <game-container />
 </template>

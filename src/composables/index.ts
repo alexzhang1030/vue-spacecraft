@@ -1,4 +1,4 @@
 export * from './dark'
-export * from './useAmmo'
+export * from './useBullets'
 export * from './useGameState'
 export * from './usePower'

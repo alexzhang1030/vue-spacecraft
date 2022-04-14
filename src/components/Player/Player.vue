@@ -21,6 +21,7 @@
         <div class="fins2"></div>
         <div class="overlay"></div>
     </div>
+
 </template>
 <style scoped>
 .player {

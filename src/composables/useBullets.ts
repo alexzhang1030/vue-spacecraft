@@ -5,6 +5,10 @@ import { isGameStart } from "./useGameState"
 
 const currentAmmo = ref(MAX_AMMO)
 const isReloading = ref(false)
+const firingBullets = useDebounceFn(() => {
+    currentAmmo.value -= 1
+}, 500, { maxWait: 500 })
+
 
 watch(() => currentAmmo.value, async (ammo) => {
     if (ammo === 0) {
@@ -19,7 +23,7 @@ export const useAmmo = () => {
     useEventListener(document, 'keydown', (evt) => {
         const { code } = evt
         if (code === 'Space' && currentAmmo.value > 0 && isGameStart.value) {
-            currentAmmo.value -= 1
+            firingBullets()
         }
     })
     return {

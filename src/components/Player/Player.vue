@@ -1,8 +1,10 @@
 <script setup lang="ts">
 // TODO refactor plane
+import { usePlayerMove } from '~/composables';
+const { x, y } = usePlayerMove()
 </script>
 <template>
-    <div class="player" style="top: 660px; left: 920px;">
+    <div class="player" :style="{ top: y - 30 + 'px', left: x - 40 + 'px' }">
         <div class="body"></div>
         <div class="head"></div>
         <div class="glass"></div>

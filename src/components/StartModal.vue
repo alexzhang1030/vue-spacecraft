@@ -18,8 +18,8 @@ onMounted(() => {
 <template>
   <Transition>
     <div
-      ref="modalRef"
       v-if="isShow"
+      ref="modalRef"
       class="w-[340px] h-[160px] top-[50%] left-[50%] translate-[-50%]"
       position="absolute"
       border="light-900 rounded-[15px] 3px"
@@ -27,8 +27,12 @@ onMounted(() => {
       align="center"
       font="bold"
     >
-      <div text="4xl" w-full>Spacecraft&nbsp;Journey</div>
-      <div text="2xl" w-full mt-5>Press ENTER to start</div>
+      <div text="4xl" w-full>
+        Spacecraft&nbsp;Journey
+      </div>
+      <div text="2xl" w-full mt-5>
+        Press ENTER to start
+      </div>
     </div>
   </Transition>
 </template>

@@ -1,8 +1,8 @@
 import { ref } from 'vue'
-import { GameState } from '~/enums/global'
 import type { Ref } from 'vue'
+import { GameState } from '~/enums/global'
 
-type StoreValue = {
+interface StoreValue {
   state: Ref<GameState>
   hp: Ref<number>
 }

@@ -4,18 +4,19 @@ const powerDisabled = ref<boolean>(false)
 
 watch(
   () => powerDisabled.value,
-  async newVal => {
+  async(newVal) => {
     if (!newVal) {
       await promiseTimeout(1000)
       powerDisabled.value = true
     }
-  }
+  },
 )
 
 export const usePower = () => {
-  useEventListener(document, 'keydown', evt => {
+  useEventListener(document, 'keydown', (evt) => {
     const { code } = evt
-    if (code === 'Enter') powerDisabled.value = true
+    if (code === 'Enter')
+      powerDisabled.value = true
   })
   return powerDisabled
 }

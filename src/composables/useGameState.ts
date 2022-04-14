@@ -5,16 +5,9 @@ import { useStore } from '~/store/store'
 const store = useStore()
 
 export function useGameState() {
-  useEventListener(document, 'keydown', (evt) => {
+  useEventListener(document, 'keydown', evt => {
     const { code } = evt
-    if (code === 'Enter')
-      store.state.value = GameState.START
-
-    if (code === 'Escape')
-      store.state.value = GameState.END
-  })
-  useEventListener(document, 'mousedown', () => {
-    if (store.state.value !== GameState.START)
-      store.state.value = GameState.START
+    if (code === 'Enter') store.state.value = GameState.START
+    if (code === 'Escape') store.state.value = GameState.END
   })
 }

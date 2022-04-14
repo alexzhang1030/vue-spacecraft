@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { usePower } from '~/composables/usePower'
+import { usePower, useAmmo } from '~/composables'
 const powerDisabled = usePower()
 const powerColor = computed(() => powerDisabled.value ? 'green' : 'red')
+const { currentAmmo, isReloading } = useAmmo()
 </script>
 <template>
-  <div w="90px" flex="~" justify="between" items="center">
-    <div w="40px" h="56px" flex="~ col" justify="center" font="bold">
-      <span text="30px" h="32px">8</span>
+  <div w="140px" flex="~" justify="between" items="center">
+    <div w="80px" h="56px" flex="~ col" justify="between" items="end" font="bold">
+      <span text="30px" h="32px" leading="40px" :style="{ fontSize: isReloading ? '24px' : '32px' }">{{
+        isReloading ? 'Reloading...' :
+          currentAmmo
+      }}</span>
       <span>∞</span>
     </div>
     <div w="40px" h="56px" flex="~ col" justify="center" items="center" font="bold" :style="{ color: powerColor }">

@@ -1,4 +1,5 @@
 import { promiseTimeout } from '@vueuse/core'
+import { isGameStart } from './useGameState'
 
 const powerDisabled = ref<boolean>(true)
 
@@ -18,7 +19,7 @@ watch(
 export const usePower = () => {
   useEventListener(document, 'keydown', (evt) => {
     const { code } = evt
-    if (code === 'Enter' && powerDisabled.value) {
+    if (code === 'Enter' && powerDisabled.value && isGameStart.value) {
       powerDisabled.value = false
     }
   })

@@ -1,11 +1,13 @@
 
 import { promiseTimeout } from "@vueuse/core"
 import { MAX_AMMO, RELOADING_TIME } from "~/config"
+import { useGameContainer2dContext } from "./useGameContainer"
 import { isGameStart } from "./useGameState"
 
 const currentAmmo = ref(MAX_AMMO)
 const isReloading = ref(false)
 const firingBullets = useDebounceFn(() => {
+    shootBullets()
     currentAmmo.value -= 1
 }, 500, { maxWait: 500 })
 
@@ -30,6 +32,18 @@ export const useAmmo = () => {
         currentAmmo,
         isReloading
     }
+}
+
+export const shootBullets = () => {
+    const ctx = useGameContainer2dContext()
+    ctx.beginPath()
+    ctx.shadowColor = '#1495ff'
+    ctx.strokeStyle = '#1495ff'
+    ctx.fillStyle = '#fff'
+    ctx.shadowBlur = 20
+    ctx.strokeRect(100, 100, 100, 100)
+    ctx.fillRect(100, 100, 100, 100)
+    ctx.closePath()
 }
 
 function resetAmmo() {

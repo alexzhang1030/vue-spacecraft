@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // TODO refactor plane
-import { usePlayerMove } from '~/composables';
-const { left: initLeft, top: initTop, x, y } = usePlayerMove()
+import { usePlayerPosition } from '~/composables';
+const { left: initLeft, top: initTop, x, y } = usePlayerPosition()
 const left = $computed(() => `${initLeft}px`)
 const top = $computed(() => `${initTop}px`)
 const transformStyle = $computed(() => `translate(${x.value}px, ${y.value}px)`)

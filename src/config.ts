@@ -4,8 +4,19 @@ export const MAX_AMMO = 8
 export const RELOADING_TIME = 3000
 // 发射子弹延迟
 export const FIRING_BULLETS_DELAY = 500
+
+const { width, height } = useWindowSize()
+
+export const GAME_CONTAINER_SIZE = {
+    width,
+    height
+}
+
+
 // 初始玩家位置
 export const INIT_PLAYER_POSITION = {
-    x: 920,
-    y: 670
+    x: width.value / 2 - 40,
+    y: height.value * 0.8
 }
+
+console.log({ y: INIT_PLAYER_POSITION.y });

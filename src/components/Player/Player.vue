@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // TODO refactor plane
-import { usePlayerPosition } from '~/composables';
-import { useStore } from '~/store/store';
+import { usePlayerPosition } from '~/composables'
+import { useStore } from '~/store/store'
 const { left: initLeft, top: initTop, x, y } = usePlayerPosition()
 const left = $computed(() => `${initLeft}px`)
 const top = $computed(() => `${initTop}px`)
@@ -9,41 +9,47 @@ const transformStyle = $computed(() => `translate(${x.value}px, ${y.value}px)`)
 const gunsRef = $ref<HTMLElement | null>(null)
 const { latestBulletPosition } = useStore()
 onMounted(() => {
-    watch([x, y], () => {
-        const { left, right, top } = gunsRef?.getBoundingClientRect()!
-        latestBulletPosition.left.value = left
-        latestBulletPosition.right.value = right
-        latestBulletPosition.top.value = top
-    }, {
-        immediate: true
-    })
+  watch([x, y], () => {
+    const { left, right, top } = gunsRef!.getBoundingClientRect()!
+    latestBulletPosition.left.value = left
+    latestBulletPosition.right.value = right
+    latestBulletPosition.top.value = top
+  }, {
+    immediate: true,
+  })
 })
 
 </script>
 <template>
-    <div class="player" :style="{
-        left, top,
-        transform: transformStyle
-    }" transition="duration-150">
-        <div class="body"></div>
-        <div class="head"></div>
-        <div class="glass"></div>
-        <div class="fire">
-            <span w="6px" h="6px" left="50.5335%" animate=""
-                style="width: 6px; height: 6px; left: 50.5335%; animation-duration: 356ms; animation-delay: 0ms; background-color: rgba(255, 68, 26, 0.77);"></span>
-            <span
-                style="width: 7px; height: 7px; left: 46.2838%; animation-duration: 464ms; animation-delay: 0ms; background-color: rgba(255, 37, 26, 0.7);"></span>
-            <span
-                style="width: 1px; height: 1px; left: 53.1594%; animation-duration: 668ms; animation-delay: 0ms; background-color: rgba(255, 41, 26, 0.57);"></span>
-            <span
-                style="width: 0px; height: 0px; left: 53.6591%; animation-duration: 394ms; animation-delay: 1000ms; background-color: rgba(255, 52, 26, 0.83);"></span>
-        </div>
-        <div class="guns" ref="gunsRef"></div>
-        <div class="fins"></div>
-        <div class="fins2"></div>
-        <div class="overlay"></div>
+  <div
+    class="player" :style="{
+      left, top,
+      transform: transformStyle
+    }" transition="duration-150"
+  >
+    <div class="body" />
+    <div class="head" />
+    <div class="glass" />
+    <div class="fire">
+      <span
+        w="6px" h="6px" left="50.5335%" animate=""
+        style="width: 6px; height: 6px; left: 50.5335%; animation-duration: 356ms; animation-delay: 0ms; background-color: rgba(255, 68, 26, 0.77);"
+      />
+      <span
+        style="width: 7px; height: 7px; left: 46.2838%; animation-duration: 464ms; animation-delay: 0ms; background-color: rgba(255, 37, 26, 0.7);"
+      />
+      <span
+        style="width: 1px; height: 1px; left: 53.1594%; animation-duration: 668ms; animation-delay: 0ms; background-color: rgba(255, 41, 26, 0.57);"
+      />
+      <span
+        style="width: 0px; height: 0px; left: 53.6591%; animation-duration: 394ms; animation-delay: 1000ms; background-color: rgba(255, 52, 26, 0.83);"
+      />
     </div>
-
+    <div ref="gunsRef" class="guns" />
+    <div class="fins" />
+    <div class="fins2" />
+    <div class="overlay" />
+  </div>
 </template>
 <style scoped>
 .player {

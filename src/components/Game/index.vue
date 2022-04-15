@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import StartModal from './StartModal.vue'
 import GamePlayer from '../Player/index.vue'
+import StartModal from './StartModal.vue'
 
 </script>
 <template>
-    <start-modal></start-modal>
-    <game-player></game-player>
+  <start-modal />
+  <game-player />
 </template>
 <style scoped>
 </style>

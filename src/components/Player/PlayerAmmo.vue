@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePower, useAmmo } from '~/composables'
+import { useAmmo, usePower } from '~/composables'
 const powerDisabled = usePower()
 const powerColor = computed(() => powerDisabled.value ? 'green' : 'red')
 const { currentAmmo, isReloading } = useAmmo()
@@ -9,7 +9,7 @@ const { currentAmmo, isReloading } = useAmmo()
     <div w="80px" h="56px" flex="~ col" justify="between" items="end" font="bold">
       <span text="30px" h="32px" leading="40px" :style="{ fontSize: isReloading ? '24px' : '32px' }">{{
         isReloading ? 'Reloading...' :
-          currentAmmo
+        currentAmmo
       }}</span>
       <span>∞</span>
     </div>

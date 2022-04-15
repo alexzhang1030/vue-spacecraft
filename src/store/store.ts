@@ -25,6 +25,6 @@ export function useStore(): StoreValue {
   return {
     state: gameStatus,
     hp,
-    latestBulletPosition
+    latestBulletPosition,
   }
 }

@@ -9,6 +9,6 @@ const { width, height } = useWindowSize()
 
 // 初始玩家位置
 export const INIT_PLAYER_POSITION = {
-    x: width.value / 2 - 40,
-    y: height.value * 0.8
+  x: width.value / 2 - 40,
+  y: height.value * 0.8,
 }

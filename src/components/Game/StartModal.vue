@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGameState, isGameEnd } from '~/composables'
+import { isGameEnd, useGameState } from '~/composables'
 
 const modalRef = ref<null | HTMLElement>(null)
 
@@ -10,8 +10,10 @@ onMounted(() => {
 </script>
 <template>
   <Transition>
-    <div v-if="isGameEnd" ref="modalRef" class="w-[340px] h-[160px] top-[50%] left-[50%] translate-[-50%]"
-      position="absolute" border="light-900 rounded-[15px] 3px" p-8 align="center" font="bold">
+    <div
+      v-if="isGameEnd" ref="modalRef" class="w-[340px] h-[160px] top-[50%] left-[50%] translate-[-50%]"
+      position="absolute" border="light-900 rounded-[15px] 3px" p-8 align="center" font="bold"
+    >
       <div text="4xl" w-full>
         Spacecraft&nbsp;Journey
       </div>

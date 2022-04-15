@@ -16,7 +16,7 @@ const { currentAmmo, isReloading } = useAmmo()
     <div w="40px" h="56px" flex="~ col" justify="center" items="center" font="bold" :style="{ color: powerColor }">
       <div v-if="powerDisabled" i-carbon:flash-filled text="18px" h="32px" />
       <div v-else i-carbon:flash text="18px" h="32px" />
-      <span text="12px">ENTER</span>
+      <span text="12px">K</span>
     </div>
   </div>
 </template>

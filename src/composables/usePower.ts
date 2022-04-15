@@ -19,7 +19,7 @@ watch(
 export const usePower = () => {
   useEventListener(document, 'keydown', (evt) => {
     const { code } = evt
-    if (code === 'Enter' && powerDisabled.value && isGameStart.value) {
+    if (code === 'KeyK' && powerDisabled.value && isGameStart.value) {
       powerDisabled.value = false
     }
   })

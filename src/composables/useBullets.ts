@@ -22,7 +22,7 @@ watch(() => currentAmmo.value, async (ammo) => {
 export const useAmmo = () => {
     useEventListener(document, 'keydown', (evt) => {
         const { code } = evt
-        if (code === 'Space' && currentAmmo.value > 0 && isGameStart.value) {
+        if (code === 'KeyJ' && currentAmmo.value > 0 && isGameStart.value) {
             firingBullets()
         }
     })

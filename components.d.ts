@@ -4,14 +4,17 @@
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Bullet: typeof import('./src/components/Player/Bullet.vue')['default']
     Counter: typeof import('./src/components/Counter.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    Game: typeof import('./src/components/Game/index.vue')['default']
+    Outbox: typeof import('./src/components/Game/Outbox.vue')['default']
     Player: typeof import('./src/components/Player/index.vue')['default']
     PlayerAmmo: typeof import('./src/components/Player/PlayerAmmo.vue')['default']
     PlayerState: typeof import('./src/components/Player/PlayerState.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    StartModal: typeof import('./src/components/StartModal.vue')['default']
+    StartModal: typeof import('./src/components/Game/StartModal.vue')['default']
   }
 }
 

@@ -1,10 +1,16 @@
 <script setup lang="ts">
 // TODO refactor plane
 import { usePlayerMove } from '~/composables';
-const { x, y } = usePlayerMove()
+const { left: initLeft, top: initTop, x, y } = usePlayerMove()
+const left = $computed(() => `${initLeft}px`)
+const top = $computed(() => `${initTop}px`)
+const transformStyle = $computed(() => `translate(${x.value}px, ${y.value}px)`)
 </script>
 <template>
-    <div class="player" :style="{ top: y - 30 + 'px', left: x - 40 + 'px' }">
+    <div class="player" :style="{
+        left, top,
+        transform: transformStyle
+    }" transition="duration-150">
         <div class="body"></div>
         <div class="head"></div>
         <div class="glass"></div>

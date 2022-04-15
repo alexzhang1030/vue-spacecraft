@@ -7,16 +7,8 @@ export const FIRING_BULLETS_DELAY = 500
 
 const { width, height } = useWindowSize()
 
-export const GAME_CONTAINER_SIZE = {
-    width,
-    height
-}
-
-
 // 初始玩家位置
 export const INIT_PLAYER_POSITION = {
     x: width.value / 2 - 40,
     y: height.value * 0.8
 }
-
-console.log({ y: INIT_PLAYER_POSITION.y });

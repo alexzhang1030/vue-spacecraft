@@ -1,11 +1,13 @@
 
 import { promiseTimeout } from "@vueuse/core"
 import { MAX_AMMO, RELOADING_TIME } from "~/config"
-import { useGameContainer2dContext } from "./useGameContainer"
 import { isGameStart } from "./useGameState"
+import PlayerBullet from '~/components/Player/playerBullet.vue'
+import { render, h } from 'vue'
 
 const currentAmmo = ref(MAX_AMMO)
 const isReloading = ref(false)
+const bullets: HTMLElement[] = $ref([])
 const firingBullets = useDebounceFn(() => {
     shootBullets()
     currentAmmo.value -= 1
@@ -34,16 +36,21 @@ export const useAmmo = () => {
     }
 }
 
+const drawBullets = () => {
+    const container = document.createElement('div')
+    const VNode = h(PlayerBullet, { x: bullets.length * 100, y: 300, w: 5, h: 10, key: bullets.length })
+    render(VNode, container)
+    document.body.append(container)
+    return container
+}
+
+export const removeBullets = (c: HTMLElement) => {
+    c.remove()
+}
+
 export const shootBullets = () => {
-    const ctx = useGameContainer2dContext()
-    ctx.beginPath()
-    ctx.shadowColor = '#1495ff'
-    ctx.strokeStyle = '#1495ff'
-    ctx.fillStyle = '#fff'
-    ctx.shadowBlur = 20
-    ctx.strokeRect(100, 100, 100, 100)
-    ctx.fillRect(100, 100, 100, 100)
-    ctx.closePath()
+    const bullet = drawBullets()
+    bullets.push(bullet)
 }
 
 function resetAmmo() {

@@ -4,6 +4,7 @@ import { MAX_AMMO, RELOADING_TIME } from "~/config"
 import { isGameStart } from "./useGameState"
 import PlayerBullet from '~/components/Player/playerBullet.vue'
 import { render, h } from 'vue'
+import { useStore } from "~/store/store"
 
 const currentAmmo = ref(MAX_AMMO)
 const isReloading = ref(false)
@@ -12,6 +13,7 @@ const firingBullets = useDebounceFn(() => {
     shootBullets()
     currentAmmo.value -= 1
 }, 500, { maxWait: 500 })
+const { latestBulletPosition } = useStore()
 
 
 watch(() => currentAmmo.value, async (ammo) => {
@@ -36,10 +38,16 @@ export const useAmmo = () => {
     }
 }
 
-const drawBullets = () => {
+export const shootBullets = () => {
+    const LeftBullet = genBullet(latestBulletPosition.left.value + 4, latestBulletPosition.top.value)
+    const RightBullet = genBullet(latestBulletPosition.right.value - 4, latestBulletPosition.top.value);
+    bullets.push(LeftBullet, RightBullet)
+}
+
+const genBullet = (x: number, y: number) => {
     const container = document.createElement('div')
-    const VNode = h(PlayerBullet, { x: bullets.length * 100, y: 300, w: 5, h: 10, key: bullets.length })
-    render(VNode, container)
+    const bullet = h(PlayerBullet, { x, y: y - 50, w: 2, h: 20 })
+    render(bullet, container)
     document.body.append(container)
     return container
 }
@@ -48,10 +56,6 @@ export const removeBullets = (c: HTMLElement) => {
     c.remove()
 }
 
-export const shootBullets = () => {
-    const bullet = drawBullets()
-    bullets.push(bullet)
-}
 
 function resetAmmo() {
     currentAmmo.value = MAX_AMMO

@@ -1,10 +1,24 @@
 <script setup lang="ts">
 // TODO refactor plane
 import { usePlayerPosition } from '~/composables';
+import { useStore } from '~/store/store';
 const { left: initLeft, top: initTop, x, y } = usePlayerPosition()
 const left = $computed(() => `${initLeft}px`)
 const top = $computed(() => `${initTop}px`)
 const transformStyle = $computed(() => `translate(${x.value}px, ${y.value}px)`)
+const gunsRef = $ref<HTMLElement | null>(null)
+const { latestBulletPosition } = useStore()
+onMounted(() => {
+    watch([x, y], () => {
+        const { left, right, top } = gunsRef?.getBoundingClientRect()!
+        latestBulletPosition.left.value = left
+        latestBulletPosition.right.value = right
+        latestBulletPosition.top.value = top
+    }, {
+        immediate: true
+    })
+})
+
 </script>
 <template>
     <div class="player" :style="{
@@ -24,7 +38,7 @@ const transformStyle = $computed(() => `translate(${x.value}px, ${y.value}px)`)
             <span
                 style="width: 0px; height: 0px; left: 53.6591%; animation-duration: 394ms; animation-delay: 1000ms; background-color: rgba(255, 52, 26, 0.83);"></span>
         </div>
-        <div class="guns"></div>
+        <div class="guns" ref="gunsRef"></div>
         <div class="fins"></div>
         <div class="fins2"></div>
         <div class="overlay"></div>

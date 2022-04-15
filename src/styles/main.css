@@ -18,3 +18,10 @@ body,
 html.dark {
   background: #a3a3a3;
 }
+
+.enemy {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 28px;
+}

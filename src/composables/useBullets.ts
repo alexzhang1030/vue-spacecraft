@@ -39,14 +39,14 @@ export const useAmmo = () => {
 }
 
 export const shootBullets = () => {
-    const LeftBullet = genBullet(latestBulletPosition.left.value + 4, latestBulletPosition.top.value)
-    const RightBullet = genBullet(latestBulletPosition.right.value - 4, latestBulletPosition.top.value);
+    const LeftBullet = genBullet(latestBulletPosition.left.value + 4, latestBulletPosition.top.value, 0)
+    const RightBullet = genBullet(latestBulletPosition.right.value - 4, latestBulletPosition.top.value, 1);
     bullets.push(LeftBullet, RightBullet)
 }
 
-const genBullet = (x: number, y: number) => {
+const genBullet = (x: number, y: number, type: 0 | 1) => {
     const container = document.createElement('div')
-    const bullet = h(PlayerBullet, { x, y: y - 50, w: 2, h: 20 })
+    const bullet = h(PlayerBullet, { x, y: y - 50, w: 2, h: 20, el: container, type })
     render(bullet, container)
     document.body.append(container)
     return container
